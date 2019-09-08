@@ -3,5 +3,10 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+moves = Move.create([
+    { move: 'rock', kills: 'scissors' }, 
+    { move: 'paper', kills: 'rock' },
+    { move: 'scissors', kills: 'paper' },
+])
