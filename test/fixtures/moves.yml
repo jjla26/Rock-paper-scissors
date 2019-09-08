@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  move: MyString
+  kills: MyString
+  active: false
+
+two:
+  move: MyString
+  kills: MyString
+  active: false
