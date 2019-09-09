@@ -6,7 +6,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 moves = Move.create([
-    { move: 'rock', kills: 'scissors' }, 
-    { move: 'paper', kills: 'rock' },
-    { move: 'scissors', kills: 'paper' },
+    { move: 'rock', kills: 'scissors', active: true }, 
+    { move: 'paper', kills: 'rock', active: true },
+    { move: 'scissors', kills: 'paper', active: true },
 ])

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_09_08_232301) do
   create_table "moves", force: :cascade do |t|
     t.string "move"
     t.string "kills"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
