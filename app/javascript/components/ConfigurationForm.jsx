@@ -3,15 +3,15 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBJumbotron } from 'md
 
 class ConfigurationForm extends React.Component{
     render(){
-        const { handleSubmitConfiguration, handleChange, error, message } = this.props
+        const { handleSubmitConfiguration, handleUpdate, edit, form, handleChange, error, message } = this.props
         return(
             <MDBContainer>
                 <MDBRow center middle>
                     <MDBCol md="12">
-                    <form onSubmit={handleSubmitConfiguration}>
+                    <form onSubmit={edit ? handleUpdate : handleSubmitConfiguration}>
                         <div className="grey-text">
-                            <MDBInput type="text" label="Move Name:" onChange={handleChange("move")} />
-                            <MDBInput type="text" label="This Move Kills:" onChange={handleChange("kills")} />
+                            <MDBInput type="text" value={form.move} label="Move Name:" onChange={handleChange("move")} />
+                            <MDBInput type="text" value={form.kills} label="This Move Kills:" onChange={handleChange("kills")} />
                             <MDBBtn type="submit">
                                 Send Form
                             </MDBBtn>

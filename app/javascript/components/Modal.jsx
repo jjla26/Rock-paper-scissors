@@ -7,7 +7,6 @@ render() {
     const { open, handleClose } = this.props
   return (
       <MDBContainer>
-        <MDBBtn color="primary" onClick={handleClose}>MDBModal</MDBBtn>
         <MDBModal isOpen={open} toggle={handleClose} centered>
           <MDBModalHeader toggle={handleClose}>Notification</MDBModalHeader>
           <MDBModalBody>

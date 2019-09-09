@@ -5,7 +5,6 @@ class MovesForm extends React.Component{
     render(){
         const { round, error, message, player1, player2, handleSubmitMoves, moves, handleChange } = this.props
         const player = player1.turn ? player1 : player2
-        console.log(moves)
         return(
             <MDBContainer>
                 <MDBRow center middle>

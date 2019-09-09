@@ -176,7 +176,6 @@ class Game extends React.Component{
     }
 
     render(){
-        console.log(this.state)
         const { error, message, loading, moves, player1, player2, round, roundMax, start } = this.state
         return(
             loading ? <Spinner /> :

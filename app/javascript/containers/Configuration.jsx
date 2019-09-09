@@ -19,6 +19,7 @@ class Configuration extends React.Component{
         openForm: false,
         error:false,
         message: "",
+        edit: false,
     }
 
     async componentDidMount(){
@@ -27,7 +28,7 @@ class Configuration extends React.Component{
     }
 
     handleClose = () =>{
-        this.setState({ ...this.state, open: false, openForm: false})
+        this.setState({ ...this.state, form:{ move:"", kills:""}, open: false, edit: false, openForm: false})
     }
 
     handleActive = id => async e => {
@@ -42,9 +43,14 @@ class Configuration extends React.Component{
         }
     } 
 
-    handleFormModal = e => {
-        console.log("modal")
-      this.setState({ ...this.state, openForm: true})  
+    handleFormModal = id => e => {
+        const { moves } = this.state
+        if(id){
+            const move = moves.filter(x => x.id === id)[0]
+            this.setState({ ...this.state, form:{ move: move.move, kills:move.kills}, id, edit: true, openForm: true})
+        }else{
+            this.setState({ ...this.state, openForm: true})  
+        }
     }
 
     handleChange = field => e => {
@@ -55,6 +61,17 @@ class Configuration extends React.Component{
                 [field]: e.target.value
             }
         })
+    }
+
+    handleUpdate = async e => {
+        e.preventDefault()
+        const { moves, form, id } = this.state
+        try {
+            const moveUpdated = await update('/moves', id, form)
+            this.setState({ ...this.setState, moves: moves.map(x => {if(x.id === id){return moveUpdated}else{return x}}), openForm:false, open: true, message: "Updated"})
+        } catch (error) {
+            this.setState({ ...this.setState, openForm:false, open: true, message: "Updating error, contact the admin"})
+        }
     }
 
     handleSubmitConfiguration = async e => {
@@ -73,8 +90,7 @@ class Configuration extends React.Component{
     }
 
     render(){
-        const { loading, moves, open, message, error, openForm } = this.state
-        console.log(this.state) 
+        const { loading, moves, form, edit, open, message, error, openForm } = this.state
         return(
             loading ? <Spinner /> :
             <MDBContainer className="my-5 text-center">
@@ -86,7 +102,7 @@ class Configuration extends React.Component{
                     </MDBRow>
                     <MDBRow center middle>
                         <MDBCol md="12">
-                            <MDBBtn onClick={this.handleFormModal}>Add Move</MDBBtn>
+                            <MDBBtn onClick={this.handleFormModal()}>Add Move</MDBBtn>
                             <Link to="/">
                                 <MDBBtn>Back to Home</MDBBtn>
                             </Link>
@@ -132,7 +148,7 @@ class Configuration extends React.Component{
                                         kills: x.kills,
                                         active: x.active ? "YES" : "NO",
                                         action: <div>
-                                                    <MDBBtn>Edit</MDBBtn>
+                                                    <MDBBtn onClick={this.handleFormModal(x.id)}>Edit</MDBBtn>
                                                     <MDBBtn onClick={this.handleActive(x.id)}>{x.active ? "Deactivate" : "Activate" }</MDBBtn>
                                                 </div>
                                     }))
@@ -153,7 +169,7 @@ class Configuration extends React.Component{
                     handleClose={this.handleClose}
                     open={openForm}
                 >
-                    <ConfigurationForm error={error} message={message} handleSubmitConfiguration={this.handleSubmitConfiguration} handleChange={this.handleChange}/>
+                    <ConfigurationForm handleUpdate={this.handleUpdate} edit={edit} form={form} error={error} message={message} handleSubmitConfiguration={this.handleSubmitConfiguration} handleChange={this.handleChange}/>
 
                 </Modal>
             </MDBContainer>
