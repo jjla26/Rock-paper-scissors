@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBJumbotron } from 'mdbreact';
+import Spinner from '../components/Spinner'
 
 class Welcome extends React.Component{
     
@@ -15,7 +16,7 @@ class Welcome extends React.Component{
     render(){
         const { loading } = this.state
         return(
-            loading ? "loading" :
+            loading ? <Spinner /> :
             <MDBContainer className="text-center my-5">
                 <MDBJumbotron>
                     <h3>Welcome to: Rock, Paper, Scissors and something else! =)</h3>
