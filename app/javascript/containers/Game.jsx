@@ -165,6 +165,11 @@ class Game extends React.Component{
                         <MovesForm moves={moves} player1={player1} player2={player2} round={round} handleSubmitMoves={this.handleSubmitMoves} handleChange={this.handleChange} />    
                     </MDBCol>
                     }
+                    { round.length === roundMax &&
+                    <MDBCol md="6">
+                        <Winner handleRestart={this.handleRestart} player={player1.wins > player2.wins ? player1 : (player1.wins < player2.wins ? player2 : "DRAW")} />
+                    </MDBCol>
+                    }
                     { round.length > 0 && round.length <= roundMax &&
                     <MDBCol md="6">
                         <Score player1={player1} player2={player2} round={round} roundMax={roundMax}/>
