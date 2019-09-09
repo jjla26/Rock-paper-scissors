@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBJumbotron } from 'md
 
 class SetupForm extends React.Component{
     render(){
-        const { handleSubmitPlayers, handleChange } = this.props
+        const { handleSubmitPlayers, error, message, handleChange } = this.props
         return(
             <MDBContainer>
                 <MDBRow center middle>
@@ -19,6 +19,7 @@ class SetupForm extends React.Component{
                                     <MDBBtn type="submit">
                                         Start
                                     </MDBBtn>
+                                    {error && <p style={{ color: 'red' }}>{message}</p>}
                                 </div>
                             </form>
                         </MDBCol>

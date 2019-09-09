@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBJumbotron, MDBSelect
 
 class MovesForm extends React.Component{
     render(){
-        const { round, player1, player2, handleSubmitMoves, moves, handleChange } = this.props
+        const { round, error, message, player1, player2, handleSubmitMoves, moves, handleChange } = this.props
         const player = player1.turn ? player1 : player2
         console.log(moves)
         return(
@@ -16,7 +16,7 @@ class MovesForm extends React.Component{
                             <form onSubmit={handleSubmitMoves}>
                                 <h6>Select Move</h6>
                                 <select className="browser-default custom-select" onChange={handleChange(player.id,"move")}>
-                                    <option>Select</option>
+                                    <option value="">Select</option>
                                     {moves.map( x => 
                                     <option key={x.id} value={x.move}>{x.move}</option>
                                     )}
@@ -25,6 +25,7 @@ class MovesForm extends React.Component{
                                 <MDBBtn type="submit">
                                     OK
                                 </MDBBtn>
+                                {error && <p style={{ color: 'red' }}>{message}</p>}
                             </form>
                         </MDBCol>
                     </MDBJumbotron>

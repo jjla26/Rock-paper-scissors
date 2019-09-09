@@ -15,7 +15,6 @@ class App extends React.Component{
                 <Route exact={true} path="/" component={Welcome} />
                 <Route exact={true} path="/game" component={Game} />
                 <Route exact={true} path="/configuration" component={Configuration} />
-
             </div>
         )
     }
