@@ -1,4 +1,4 @@
-# Rocks, Paper, Scissors => Game
+# Rock, Paper, Scissors => Game
 
 In order to make the game work:
 
