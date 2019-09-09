@@ -36,7 +36,8 @@ class Game extends React.Component{
     }
 
     async componentDidMount(){
-        const moves = await read('/moves')
+        let moves = await read('/moves')
+        moves = moves.filter(x => x.active)
         this.setState({ ...this.state, moves, loading:false})
     }  
 
