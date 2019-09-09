@@ -11,7 +11,7 @@ class Api::MovesController < ApplicationController
         if move.update(move_params)
             render json: move
         else
-            render json: { status: 401 }
+            render json: { status: error }
         end
     end
 
@@ -20,7 +20,7 @@ class Api::MovesController < ApplicationController
         if move.save
             render json: move
         else
-            render json: { status: 401 }
+            render json: { status: error }
         end
     end
 
